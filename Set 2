@@ -27,3 +27,192 @@ int main() {
     return 0;
 }
 
+//invirsion-
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to count inversions in the array
+int inversionCount(vector<int> &arr) {
+    int n = arr.size(); 
+    int invCount = 0; 
+  
+    // Loop through the array
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+          
+            // If the current element is greater 
+            // than the next, increment the count
+            if (arr[i] > arr[j])
+                invCount++;
+        }
+    }
+    return invCount; 
+}
+
+int main() {
+    vector<int> arr = {4, 3, 2, 1};
+    cout << inversionCount(arr) << endl; 
+    return 0;
+}
+// Kth largest element-
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+vector<int> kLargest(vector<int> &arr, int k) {
+  
+    // sort the given array in descending order
+    sort(arr.begin(), arr.end(), greater<int>());
+    
+      // store the first k element in result array
+    vector<int> res(arr.begin(), arr.begin() + k);
+      return res;
+}
+
+int main() {
+    vector<int>arr = {1, 23, 12, 9, 30, 2, 50};
+    int k = 3;
+ 
+    vector<int> res = kLargest(arr, k);
+      for(int ele : res)
+          cout << ele << " ";
+  
+      return 0;
+}
+
+// Palindrom-
+
+#include <iostream>
+#include <string>
+using namespace std;
+bool palindrome(string s);
+int main()
+{
+  string s;
+	getline(cin,s);
+    
+    if(palindrome(s))
+    	cout<<s<<" is a palindrome"<<endl;
+    else
+    	cout<<s<<" is not a palindrome"<<endl;
+
+    return 0;
+}
+
+bool palindrome(string s)
+{
+	if(s.length() == 0)
+		return true;
+    for(int i = 0,j = s.length() - 1;i<=j;)
+    {
+    	char left = tolower(s[i]);
+    	char right = tolower(s[j]);
+    	if((left >= '0' && left <= '9') || (left >= 'a' && left <= 'z')) 
+    		;
+    	else
+        {
+        	i++;
+        	continue;
+        }    	
+        if((right >= '0' && right <= '9') || (right >= 'a' && right <= 'z')) 
+    		;
+    	else
+        {
+        	j--;
+        	continue;
+        } 
+
+        if(left == right)
+        {
+          i++;
+          j--;
+          continue;
+        }
+        return false;
+    }
+
+    return true;
+}
+
+//Equilibrium-
+
+// C++ program to find equilibrium
+// index of an array
+#include <bits/stdc++.h>
+using namespace std;
+
+// function to find the equilibrium index
+int equilibriumPoint(vector<long long>& arr)
+{
+    int n = arr.size();
+    long long leftsum, rightsum;
+
+    /* Check for indexes one by one until
+    an equilibrium index is found */
+    for (int i = 0; i < n; ++i) {
+
+        /* get left sum */
+        leftsum = 0;
+        for (int j = 0; j < i; j++)
+            leftsum += arr[j];
+
+        /* get right sum */
+        rightsum = 0;
+        for (int j = i + 1; j < n; j++)
+            rightsum += arr[j];
+
+        /* if leftsum and rightsum
+        are same, then we are done */
+        if (leftsum == rightsum)
+            return i + 1;
+    }
+    return -1;
+}
+
+// Driver code
+int main()
+{
+    // Sample Input
+    vector<long long> arr = { -7, 1, 5, 2, -4, 3, 0 };
+
+    // Function call
+    cout << equilibriumPoint(arr);
+    return 0;
+}
+
+// Two pointers approach-
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool twoSum(vector<int> &arr, int target) {
+    int n = arr.size();
+
+    // Consider all pairs (arr[i], arr[j])
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+          
+            // Check if the sum of the current pair
+            // equals the target
+            if (arr[i] + arr[j] == target) {
+                return true;
+            }
+        }
+    }
+  
+    // If no pair is found after checking all 
+    return false;
+}
+
+int main() {  
+    vector<int> arr = {0, -1, 2, -3, 1};
+    int target = -2;
+    cout << ((twoSum(arr, target))? "true" : "false");
+    return 0;
+}
+
+//
